@@ -24,8 +24,39 @@
   color: white;
 }
 
+
+
 .App-link {
   color: #61dafb;
+}
+
+
+.users-list {
+display: grid; 
+grid-template-columns: 300px 300px 300px 300px 300px 300px;
+align-items: start;
+margin: 20px;  
+gap: 10px;
+box-shadow: 10px 5px 5px rgb(207, 207, 207); 
+
+}
+
+
+.img {
+  object-fit: cover;
+  object-position: center;
+  height: 300px;
+  width: 300px;
+}
+
+.card {
+  align-items: center;
+}
+
+
+.card-title {
+  font-size: 25px;
+  align-content: center;
 }
 
 @keyframes App-logo-spin {
