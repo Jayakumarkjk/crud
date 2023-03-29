@@ -6,11 +6,11 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 
 
-export function EditUser() {
+export function EditStudent() {
     const { userid } = useParams();
     const [users, setUsers] = useState(null);
     useEffect(() => {
-        fetch(`https://6401ca170a2a1afebef22a4a.mockapi.io/users/${userid}`, {
+        fetch(`https://641f060ef228f1a83eaee346.mockapi.io/adminlist/${userid}`, {
             method: "GET",
         })
             .then((data) => data.json())
@@ -18,16 +18,16 @@ export function EditUser() {
                 setUsers(dt1data);
             });
     });
-    return users ? <EditUserForm users={users}/> : "Please wait........!!!"
+    return users ? <EditStudentForm users={users}/> : "Please wait........!!!"
 
 }
 
-function EditUserForm({users}) {
+function EditStudentForm({users}) {
     const [name, setName] = useState(users.name);
-    const [age, setAge] = useState(users.age);
-    const [gender, setGender] = useState(users.gender);
-    const [city, setCity] = useState(users.city);
-    const [country, setCountry] = useState(users.country);
+    const [department, setDepartment] = useState(users.department);
+    const [email, setEmail] = useState(users.email);
+    const [phone, setPhone] = useState(users.phone);
+    const [address, setAddress] = useState(users.address);
     const [image, setImage] = useState(users.image);
 
     
@@ -47,39 +47,39 @@ function EditUserForm({users}) {
                 style={{width:'800px'}}
             /><br/><br/>
             <TextField
-                 label="Age"
+                 label="Department"
                 variant="outlined"
-                onChange={(event) => setAge(event.target.value)}
+                onChange={(event) => setDepartment(event.target.value)}
                 type="text"
-                placeholder="Enter your Age"
-                value={age}
+                placeholder="Enter your department"
+                value={department}
                 style={{width:'800px'}}
             /><br/><br/>
             <TextField
-                label="Gender"
+                label="Email"
                 variant="outlined"
-                onChange={(event) => setGender(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
                 type="text"
-                placeholder="Enter your Gender"
-                value={gender}
+                placeholder="Enter your email"
+                value={email}
                 style={{width:'800px'}}
             /><br/><br/>
             <TextField
-                 label="City"
+                 label="Phone"
                 variant="outlined"
-                onChange={(event) => setCity(event.target.value)}
+                onChange={(event) => setPhone(event.target.value)}
                 type="text"
-                placeholder="Enter your City"
-                value={city}
+                placeholder="Enter your phone"
+                value={phone}
                 style={{width:'800px'}}
             /><br/><br/>
             <TextField
-                label="Country"
+                label="Address"
                 variant="outlined"
-                onChange={(event) => setCountry(event.target.value)}
+                onChange={(event) => setAddress(event.target.value)}
                 type="text"
-                placeholder="Enter your Country"
-                value={country}
+                placeholder="Enter your address"
+                value={address}
                 style={{width:'800px'}}
             /><br/><br/>
             <TextField
@@ -98,19 +98,19 @@ function EditUserForm({users}) {
                     () => {
                         const updatedUser = {
                             name: name,
-                            age: age,
-                            gender: gender,
-                            city: city,
-                            country: country,
+                            department: department,
+                            email: email,
+                            phone: phone,
+                            address: address,
                             image: image,
                         };
-                        fetch(`https://6401ca170a2a1afebef22a4a.mockapi.io/users/${users.id}`, {
+                        fetch(`https://641f060ef228f1a83eaee346.mockapi.io/adminlist/${users.id}`, {
                             method: "PUT",
                             body: JSON.stringify(updatedUser),
                             headers: { "Content-Type": "application/json" },
                         })
                             .then((data)=>data.json())
-                            .then(()=>navigate("/dashboard"));
+                            .then(()=>navigate("/students"));
                     }
                 }
             >
