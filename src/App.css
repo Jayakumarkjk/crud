@@ -24,11 +24,17 @@
   color: white;
 }
 
-
+.hm {
+margin: 20px;
+font-size: large;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-style: italic;
+}
 
 .App-link {
   color: #61dafb;
 }
+
 
 
 .users-list {
@@ -41,16 +47,19 @@ box-shadow: 10px 5px 5px rgb(207, 207, 207);
 
 }
 
-
-.img {
-  object-fit: cover;
-  object-position: center;
-  height: 300px;
-  width: 300px;
+.detail {
+  width: 250px;
 }
 
+
 .card {
-  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: grid; 
+  grid-template-columns: 300px 300px 300px 300px 300px 300px;
+  align-items: start;
+  
+
 }
 
 
