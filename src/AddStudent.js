@@ -12,32 +12,30 @@ const userValidationSchema = yup.object({
     name: yup.string()
         .min(2, "Please enter your name")
         .required("Name is mandatory"),
-    age: yup.number()
-        .min(0, "Please Enter your Age")
-        .required("Age is mandatory"),
-    gender: yup.string()
-        .min(1, "Please type your Gender")
-        .required("Gender is mandatory"),
-    city: yup.string()
-        .min(2, "Please enter city name")
-        .required("City is mandatory"),
-    country: yup.string()
-        .max(20, "Please type country name")
-        .required("Country is mandatory"),
+    department: yup.string()
+        .min(0, "Please Enter your department")
+        .required("Department is mandatory"),
+    email: yup.string()
+        .min(2, "Please enter city email")
+        .required("Email is mandatory"),
+    address: yup.string()
+        .min(1, "Please type your address")
+        .required("Address is mandatory"),
+   
     image: yup.string()
         .min(2, "Please enter your url")
         .required("Image is mandatory"),
    
 });
 
-export function AddUser({ userList, setUserList }) {
+export function AddStudent({ userList, setUserList }) {
     const formik = useFormik({
         initialValues: {
             name: "",
-            age: "",
-            gender: "",
-            city: "",
-            country: "",
+            department: "",
+            email: "",
+            phone: "",
+            address: "",
             image: "",
         },
         validationSchema: userValidationSchema,
@@ -48,13 +46,13 @@ export function AddUser({ userList, setUserList }) {
     const navigate = useNavigate();
 
     const createUser = (newUser) => {
-        fetch("https://6401ca170a2a1afebef22a4a.mockapi.io/users", {
+        fetch("https://641f060ef228f1a83eaee346.mockapi.io/adminlist", {
             method: "POST",
             body: JSON.stringify(newUser),
             headers: { "Content-Type": "application/json" },
         })
             .then((data) => data.json())
-            .then(() => navigate("/dashboard"));
+            .then(() => navigate("/students"));
         console.log(newUser);
         setUserList([...userList, newUser]);
     };
@@ -79,59 +77,59 @@ export function AddUser({ userList, setUserList }) {
             <br />
             
             <TextField
-                id="age"
-                name="age"
-                label="Age"
+                id="department"
+                name="department"
+                label="Department"
                 variant="outlined"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.age}
+                value={formik.values.department}
                 style={{ width: '800px' }}
             /><br />
-            {formik.touched.age && formik.errors.age
-                ? formik.errors.age
+            {formik.touched.department && formik.errors.department
+                ? formik.errors.department
                 : ""}
             <br />
             <TextField
-                id="gender"
-                name="gender"
-                label="Gender"
+                id="email"
+                name="email"
+                label="Email"
                 variant="outlined"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.gender}
+                value={formik.values.email}
                 style={{ width: '800px' }}
             /><br />
-            {formik.touched.gender && formik.errors.gender
-                ? formik.errors.gender
+            {formik.touched.email && formik.errors.email
+                ? formik.errors.email
                 : ""}
             <br />
             <TextField
-                id="city"
-                name="city"
-                label="City"
+                id="phone"
+                name="phone"
+                label="Phone"
                 variant="outlined"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.city}
+                value={formik.values.phone}
                 style={{ width: '800px' }}
             /><br />
-            {formik.touched.city && formik.errors.city
-                ? formik.errors.city
+            {formik.touched.phone && formik.errors.phone
+                ? formik.errors.phone
                 : ""}
             <br />
             <TextField
-                id="country"
-                name="country"
-                label="Country"
+                id="address"
+                name="address"
+                label="Address"
                 variant="outlined"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.country}
+                value={formik.values.address}
                 style={{ width: '800px' }}
             /><br />
-            {formik.touched.country && formik.errors.country
-                ? formik.errors.country
+            {formik.touched.address && formik.errors.address
+                ? formik.errors.address
                 : ""}
             <br />
             <TextField
@@ -156,7 +154,7 @@ export function AddUser({ userList, setUserList }) {
                 color="primary"
                 onClick={createUser}
             >
-                Add User
+                Add Student
             </Button>&nbsp;&nbsp;
 
             <Button  variant="contained" color="primary" onClick={() => navigate(-1)}>
