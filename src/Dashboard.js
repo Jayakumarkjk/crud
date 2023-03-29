@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import Cards from './Cards.js'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from "react-router-dom";
-import { UserTeacher } from "./UserTeacher";
+import { Users } from "./Users";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -10,7 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 
 
-export function TeachersList() {
+export function Dashboard() {
     const [user, setUser] = useState([]);
     // useEffect(() =>{
     //   fetch("https://6401ca170a2a1afebef22a4a.mockapi.io/users", {
@@ -23,7 +24,7 @@ export function TeachersList() {
     //   });
     // }, []);
     const getDetail = () => {
-      fetch("https://6401c97d3779a862625e0dbc.mockapi.io/Teachers",
+      fetch("https://6401ca170a2a1afebef22a4a.mockapi.io/users",
           { method: "GET" })
           .then((data) => data.json())
           .then((data1) => setUser(data1));
@@ -40,14 +41,14 @@ return(
             {/* {user.map((userList)=>(
                 <Users  users={userList}/> */}
                 {user.map((dt1, index)=>(
-                  <UserTeacher  key= {index} users={dt1} id={dt1.id} 
+                  <Users  key= {index} users={dt1} id={dt1.id} 
                   
                   deleteButton={
                     <IconButton
                       color="error"
                       aria-label="deleteButton"
                       onClick={() => {
-                        fetch(`https://6401c97d3779a862625e0dbc.mockapi.io/Teachers/${dt1.id}`, 
+                        fetch(`https://6401ca170a2a1afebef22a4a.mockapi.io/users/${dt1.id}`, 
                           { method: "DELETE" })
                           .then(() => getDetail());
                         
@@ -60,7 +61,7 @@ return(
                     <IconButton
                       color="secondary"
                       aria-label="editButton"
-                      onClick={() => navigate(`/edittea/${dt1.id}`)}
+                      onClick={() => navigate(`/edit/${dt1.id}`)}
                     >
                       <EditIcon />
                     </IconButton>
@@ -108,5 +109,3 @@ return(
 //     </div>
 // )
 // };
-
-
